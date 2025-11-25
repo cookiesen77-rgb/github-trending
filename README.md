@@ -98,7 +98,7 @@ Then visit `http://localhost:8080` in your browser.
 ### 📸 Screenshots
 
 #### CLI Output
-![CLI Interface](screenshots/cli-screenshot.png)
+![CLI Interface](screenshots/cli.png)
 
 Modern terminal display with:
 - 🎨 Colorful output
@@ -112,10 +112,7 @@ Modern terminal display with:
 ![Web Interface - Daily](screenshots/web-daily.png)
 
 **Weekly Trending:**
-![Web Interface - Weekly](screenshots/web-weekly.png)
-
-**Monthly Trending:**
-![Web Interface - Monthly](screenshots/web-monthly.png)
+![Web Interface - Weekly](screenshots/web1.png)
 
 Modern dark theme with:
 - 🎯 Card-based layout
@@ -224,7 +221,7 @@ python web_server.py --no-browser
 ### 📸 截图
 
 #### 命令行输出
-![CLI Interface](screenshots/cli-screenshot.png)
+![CLI Interface](screenshots/cli.png)
 
 现代终端显示，包含：
 - 🎨 彩色输出
@@ -238,10 +235,7 @@ python web_server.py --no-browser
 ![Web Interface - Daily](screenshots/web-daily.png)
 
 **本周热门：**
-![Web Interface - Weekly](screenshots/web-weekly.png)
-
-**本月热门：**
-![Web Interface - Monthly](screenshots/web-monthly.png)
+![Web Interface - Weekly](screenshots/web1.png)
 
 现代暗色主题，包含：
 - 🎯 卡片式布局
