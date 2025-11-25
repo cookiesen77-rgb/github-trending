@@ -108,11 +108,9 @@ Modern terminal display with:
 
 #### Web Interface
 
-**Today's Trending:**
-![Web Interface - Daily](screenshots/web-daily.png)
+![Web Interface 1](screenshots/web1.png)
 
-**Weekly Trending:**
-![Web Interface - Weekly](screenshots/web1.png)
+![Web Interface 2](screenshots/web-daily.png)
 
 Modern dark theme with:
 - 🎯 Card-based layout
@@ -231,11 +229,9 @@ python web_server.py --no-browser
 
 #### 网页界面
 
-**今日热门：**
-![Web Interface - Daily](screenshots/web-daily.png)
+![Web Interface 1](screenshots/web1.png)
 
-**本周热门：**
-![Web Interface - Weekly](screenshots/web1.png)
+![Web Interface 2](screenshots/web-daily.png)
 
 现代暗色主题，包含：
 - 🎯 卡片式布局
