@@ -43,7 +43,21 @@ pip3 install -r requirements.txt
 pip install -r requirements.txt
 ```
 
-### 🚀 Usage
+### 🚀 Quick Start
+
+#### One-Click Web Launch
+
+**macOS / Linux:**
+```bash
+./start_web.sh
+```
+
+**Windows:**
+```bash
+start_web.bat
+```
+
+Then visit `http://localhost:8080` in your browser.
 
 #### CLI Mode (Terminal)
 
@@ -141,6 +155,22 @@ pip3 install -r requirements.txt
 ```bash
 pip install -r requirements.txt
 ```
+
+### 🚀 快速启动
+
+#### 一键启动Web版
+
+**macOS / Linux:**
+```bash
+./start_web.sh
+```
+
+**Windows:**
+```bash
+start_web.bat
+```
+
+然后在浏览器中访问 `http://localhost:8080`。
 
 ### 🚀 使用方法
 
