@@ -61,18 +61,23 @@ Then visit `http://localhost:8080` in your browser.
 
 #### CLI Mode (Terminal)
 
+**Quick Start:**
 ```bash
-# Today's trending (default)
-python github_trend.py
+# One-click launch (recommended)
+./start_cli.sh
 
-# This week's trending
-python github_trend.py weekly
+# With time range
+./start_cli.sh weekly
+./start_cli.sh monthly
+```
 
-# This month's trending
-python github_trend.py monthly
+**Manual launch:**
+```bash
+# Activate virtual environment first
+source venv/bin/activate
 
-# Show help
-python github_trend.py --help
+# Then run
+python3 github_trend.py
 ```
 
 #### Web Mode (Browser)
@@ -182,18 +187,23 @@ start_web.bat
 
 #### 命令行模式
 
+**快速启动（推荐）：**
 ```bash
-# 查看今日热门（默认）
-python github_trend.py
+# 一键启动
+./start_cli.sh
 
-# 查看本周热门
-python github_trend.py weekly
+# 指定时间范围
+./start_cli.sh weekly
+./start_cli.sh monthly
+```
 
-# 查看本月热门
-python github_trend.py monthly
+**手动启动：**
+```bash
+# 先激活虚拟环境
+source venv/bin/activate
 
-# 显示帮助
-python github_trend.py --help
+# 然后运行
+python3 github_trend.py
 ```
 
 #### 网页模式
