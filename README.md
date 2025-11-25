@@ -27,7 +27,7 @@ A simple and beautiful tool to fetch and display GitHub trending repositories.
 #### 1. Clone the repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/github-trending.git
+git clone https://github.com/cookiesen77-rgb/github-trending.git
 cd github-trending
 ```
 
@@ -126,7 +126,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 #### 1. 克隆仓库
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/github-trending.git
+git clone https://github.com/cookiesen77-rgb/github-trending.git
 cd github-trending
 ```
 
