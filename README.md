@@ -93,18 +93,24 @@ Then visit `http://localhost:8080` in your browser.
 ### 📸 Screenshots
 
 #### CLI Output
-```
-╔══════════════════════════════════════════════════════════════════╗
-║           🔥 GitHub Trending - Daily (今日) | 2025-11-25         ║
-╚══════════════════════════════════════════════════════════════════╝
+![CLI Interface](screenshots/cli-screenshot.png)
 
-  1. microsoft/vscode
-     Visual Studio Code - Open Source IDE
-     [TypeScript] ⭐ 165,000 (+150)
-     🔗 https://github.com/microsoft/vscode
-```
+Modern terminal display with:
+- 🎨 Colorful output
+- 📊 Repository statistics
+- 🔗 Direct links to repositories
+- 📅 Time range indicators
 
 #### Web Interface
+
+**Today's Trending:**
+![Web Interface - Daily](screenshots/web-daily.png)
+
+**Weekly Trending:**
+![Web Interface - Weekly](screenshots/web-weekly.png)
+
+**Monthly Trending:**
+![Web Interface - Monthly](screenshots/web-monthly.png)
 
 Modern dark theme with:
 - 🎯 Card-based layout
@@ -208,18 +214,24 @@ python web_server.py --no-browser
 ### 📸 截图
 
 #### 命令行输出
-```
-╔══════════════════════════════════════════════════════════════════╗
-║           🔥 GitHub Trending - Daily (今日) | 2025-11-25         ║
-╚══════════════════════════════════════════════════════════════════╝
+![CLI Interface](screenshots/cli-screenshot.png)
 
-  1. microsoft/vscode
-     Visual Studio Code - 开源IDE
-     [TypeScript] ⭐ 165,000 (+150)
-     🔗 https://github.com/microsoft/vscode
-```
+现代终端显示，包含：
+- 🎨 彩色输出
+- 📊 仓库统计信息
+- 🔗 直接链接到仓库
+- 📅 时间范围指示
 
 #### 网页界面
+
+**今日热门：**
+![Web Interface - Daily](screenshots/web-daily.png)
+
+**本周热门：**
+![Web Interface - Weekly](screenshots/web-weekly.png)
+
+**本月热门：**
+![Web Interface - Monthly](screenshots/web-monthly.png)
 
 现代暗色主题，包含：
 - 🎯 卡片式布局
