@@ -1,0 +1,508 @@
+/* ==================== CSS Variables ==================== */
+:root {
+    /* Colors - GitHub Dark Theme Inspired */
+    --bg-primary: #0d1117;
+    --bg-secondary: #161b22;
+    --bg-tertiary: #21262d;
+    --bg-card: #161b22;
+    --bg-card-hover: #1c2128;
+    
+    --text-primary: #e6edf3;
+    --text-secondary: #8b949e;
+    --text-muted: #6e7681;
+    
+    --accent-primary: #58a6ff;
+    --accent-secondary: #1f6feb;
+    --accent-success: #3fb950;
+    --accent-warning: #d29922;
+    --accent-danger: #f85149;
+    
+    --border-color: #30363d;
+    --border-highlight: #58a6ff;
+    
+    /* Gradients */
+    --gradient-fire: linear-gradient(135deg, #f97316 0%, #ef4444 50%, #ec4899 100%);
+    --gradient-card: linear-gradient(180deg, rgba(88, 166, 255, 0.1) 0%, transparent 100%);
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+    --shadow-glow: 0 0 20px rgba(88, 166, 255, 0.3);
+    
+    /* Typography */
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-mono: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+    
+    /* Spacing */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-2xl: 3rem;
+    
+    /* Border Radius */
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --radius-full: 9999px;
+    
+    /* Transitions */
+    --transition-fast: 150ms ease;
+    --transition-normal: 250ms ease;
+    --transition-slow: 350ms ease;
+}
+
+/* ==================== Reset & Base ==================== */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-sans);
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Background Pattern */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(ellipse at top, rgba(88, 166, 255, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at bottom right, rgba(236, 72, 153, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+a {
+    color: var(--accent-primary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+a:hover {
+    color: var(--text-primary);
+}
+
+/* ==================== Container ==================== */
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: var(--spacing-xl);
+    padding-top: var(--spacing-2xl);
+}
+
+/* ==================== Header ==================== */
+.header {
+    text-align: center;
+    margin-bottom: var(--spacing-2xl);
+}
+
+.logo {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
+}
+
+.logo-icon {
+    font-size: 2.5rem;
+    animation: fire-pulse 2s ease-in-out infinite;
+}
+
+@keyframes fire-pulse {
+    0%, 100% { transform: scale(1); filter: brightness(1); }
+    50% { transform: scale(1.1); filter: brightness(1.2); }
+}
+
+.logo h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    background: var(--gradient-fire);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.02em;
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+}
+
+/* ==================== Tabs ==================== */
+.tabs {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-2xl);
+    flex-wrap: wrap;
+}
+
+.tab {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-full);
+    color: var(--text-secondary);
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+}
+
+.tab:hover {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    border-color: var(--text-muted);
+}
+
+.tab.active {
+    background: var(--accent-secondary);
+    border-color: var(--accent-primary);
+    color: var(--text-primary);
+    box-shadow: var(--shadow-glow);
+}
+
+.tab-icon {
+    font-size: 1.1rem;
+}
+
+/* ==================== Loading ==================== */
+.loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-2xl);
+    gap: var(--spacing-lg);
+    color: var(--text-secondary);
+}
+
+.spinner {
+    width: 48px;
+    height: 48px;
+    border: 3px solid var(--bg-tertiary);
+    border-top-color: var(--accent-primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ==================== Error ==================== */
+.error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-2xl);
+    gap: var(--spacing-md);
+    color: var(--text-secondary);
+}
+
+.error-icon {
+    font-size: 3rem;
+}
+
+.retry-btn {
+    padding: var(--spacing-sm) var(--spacing-lg);
+    background: var(--accent-secondary);
+    border: none;
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.retry-btn:hover {
+    background: var(--accent-primary);
+}
+
+/* ==================== Repository Grid ==================== */
+.repo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+/* ==================== Repository Card ==================== */
+.repo-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    transition: all var(--transition-normal);
+    animation: card-enter 0.4s ease backwards;
+    position: relative;
+    overflow: hidden;
+}
+
+.repo-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gradient-fire);
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+}
+
+.repo-card:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--border-highlight);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.repo-card:hover::before {
+    opacity: 1;
+}
+
+@keyframes card-enter {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Card Header */
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+}
+
+.rank {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--accent-warning);
+    background: rgba(210, 153, 34, 0.15);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-sm);
+}
+
+.lang-badge {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    background: color-mix(in srgb, var(--lang-color, #8b949e) 20%, transparent);
+    border: 1px solid var(--lang-color, #8b949e);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-sm);
+}
+
+/* Repo Name */
+.repo-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.4;
+}
+
+.repo-name a {
+    color: var(--accent-primary);
+    transition: color var(--transition-fast);
+}
+
+.repo-name a:hover {
+    color: var(--text-primary);
+    text-decoration: underline;
+}
+
+/* Repo Description */
+.repo-desc {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: var(--spacing-lg);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 2.7rem;
+}
+
+/* Card Footer */
+.card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--border-color);
+}
+
+.stars {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+}
+
+.star-icon {
+    font-size: 1rem;
+}
+
+.star-count {
+    color: var(--accent-warning);
+    font-weight: 600;
+}
+
+.today-stars {
+    color: var(--accent-success);
+    font-size: 0.8rem;
+    font-weight: 500;
+    background: rgba(63, 185, 80, 0.15);
+    padding: 2px 6px;
+    border-radius: var(--radius-sm);
+    margin-left: var(--spacing-xs);
+}
+
+.view-btn {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-fast);
+}
+
+.view-btn:hover {
+    color: var(--accent-primary);
+    background: rgba(88, 166, 255, 0.1);
+}
+
+/* ==================== Footer ==================== */
+.footer {
+    margin-top: var(--spacing-2xl);
+    padding-top: var(--spacing-xl);
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.footer a {
+    color: var(--text-secondary);
+}
+
+.footer a:hover {
+    color: var(--accent-primary);
+}
+
+/* ==================== Responsive ==================== */
+@media (max-width: 1200px) {
+    .repo-grid {
+        grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: var(--spacing-md);
+        padding-top: var(--spacing-xl);
+    }
+    
+    .logo h1 {
+        font-size: 1.8rem;
+    }
+    
+    .logo-icon {
+        font-size: 2rem;
+    }
+    
+    .subtitle {
+        font-size: 0.95rem;
+    }
+    
+    .tabs {
+        gap: var(--spacing-xs);
+    }
+    
+    .tab {
+        padding: var(--spacing-sm) var(--spacing-md);
+        font-size: 0.85rem;
+    }
+    
+    .repo-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+    
+    .repo-card {
+        padding: var(--spacing-md);
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+    
+    .tab-icon {
+        display: none;
+    }
+}
+
+/* ==================== Scrollbar ==================== */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-full);
+    border: 2px solid var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted);
+}
+
+/* ==================== Selection ==================== */
+::selection {
+    background: var(--accent-secondary);
+    color: var(--text-primary);
+}
+

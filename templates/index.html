@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Trending</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <span class="logo-icon">🔥</span>
+                <h1>GitHub Trending</h1>
+            </div>
+            <p class="subtitle">Discover the most popular repositories on GitHub</p>
+        </header>
+
+        <!-- Time Range Tabs -->
+        <nav class="tabs">
+            <button class="tab active" data-since="daily">
+                <span class="tab-icon">📅</span>
+                Today
+            </button>
+            <button class="tab" data-since="weekly">
+                <span class="tab-icon">📆</span>
+                This Week
+            </button>
+            <button class="tab" data-since="monthly">
+                <span class="tab-icon">🗓️</span>
+                This Month
+            </button>
+        </nav>
+
+        <!-- Loading State -->
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Fetching trending repositories...</p>
+        </div>
+
+        <!-- Error State -->
+        <div class="error" id="error" style="display: none;">
+            <span class="error-icon">⚠️</span>
+            <p id="error-message">Failed to load data</p>
+            <button class="retry-btn" onclick="loadTrending()">Retry</button>
+        </div>
+
+        <!-- Repository Grid -->
+        <main class="repo-grid" id="repo-grid">
+            <!-- Repositories will be inserted here -->
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>
+                Data from <a href="https://github.com/trending" target="_blank">GitHub Trending</a>
+                ·
+                <a href="https://github.com/YOUR_USERNAME/github-trending" target="_blank">Source Code</a>
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        let currentSince = 'daily';
+
+        // Tab switching
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                currentSince = tab.dataset.since;
+                loadTrending();
+            });
+        });
+
+        // Load trending data
+        async function loadTrending() {
+            const grid = document.getElementById('repo-grid');
+            const loading = document.getElementById('loading');
+            const error = document.getElementById('error');
+
+            grid.innerHTML = '';
+            loading.style.display = 'flex';
+            error.style.display = 'none';
+
+            try {
+                const response = await fetch(`/api/trending?since=${currentSince}`);
+                const result = await response.json();
+
+                loading.style.display = 'none';
+
+                if (!result.success) {
+                    error.style.display = 'flex';
+                    document.getElementById('error-message').textContent = result.error;
+                    return;
+                }
+
+                if (result.data.length === 0) {
+                    error.style.display = 'flex';
+                    document.getElementById('error-message').textContent = 'No repositories found';
+                    return;
+                }
+
+                // Render repositories with staggered animation
+                result.data.forEach((repo, index) => {
+                    const card = createRepoCard(repo, index + 1);
+                    card.style.animationDelay = `${index * 0.05}s`;
+                    grid.appendChild(card);
+                });
+
+            } catch (err) {
+                loading.style.display = 'none';
+                error.style.display = 'flex';
+                document.getElementById('error-message').textContent = 'Network error: ' + err.message;
+            }
+        }
+
+        // Create repository card
+        function createRepoCard(repo, rank) {
+            const card = document.createElement('article');
+            card.className = 'repo-card';
+
+            const langColor = getLanguageColor(repo.language);
+            const langBadge = repo.language 
+                ? `<span class="lang-badge" style="--lang-color: ${langColor}">${repo.language}</span>` 
+                : '';
+
+            const todayStars = repo.today_stars 
+                ? `<span class="today-stars">+${repo.today_stars.replace(/ stars.*/, '')}</span>` 
+                : '';
+
+            card.innerHTML = `
+                <div class="card-header">
+                    <span class="rank">#${rank}</span>
+                    ${langBadge}
+                </div>
+                <h3 class="repo-name">
+                    <a href="${repo.url}" target="_blank">${repo.name}</a>
+                </h3>
+                <p class="repo-desc">${repo.description || 'No description available'}</p>
+                <div class="card-footer">
+                    <div class="stars">
+                        <span class="star-icon">⭐</span>
+                        <span class="star-count">${repo.stars || '0'}</span>
+                        ${todayStars}
+                    </div>
+                    <a href="${repo.url}" target="_blank" class="view-btn">View →</a>
+                </div>
+            `;
+
+            return card;
+        }
+
+        // Language colors (subset of GitHub's language colors)
+        function getLanguageColor(lang) {
+            const colors = {
+                'JavaScript': '#f1e05a',
+                'TypeScript': '#3178c6',
+                'Python': '#3572A5',
+                'Java': '#b07219',
+                'Go': '#00ADD8',
+                'Rust': '#dea584',
+                'C++': '#f34b7d',
+                'C': '#555555',
+                'C#': '#178600',
+                'Ruby': '#701516',
+                'PHP': '#4F5D95',
+                'Swift': '#F05138',
+                'Kotlin': '#A97BFF',
+                'Dart': '#00B4AB',
+                'Shell': '#89e051',
+                'HTML': '#e34c26',
+                'CSS': '#563d7c',
+                'Vue': '#41b883',
+                'Svelte': '#ff3e00',
+                'Jupyter Notebook': '#DA5B0B',
+                'R': '#198CE7',
+                'Scala': '#c22d40',
+                'Elixir': '#6e4a7e',
+                'Haskell': '#5e5086',
+                'Lua': '#000080',
+                'Perl': '#0298c3',
+                'Zig': '#ec915c',
+                'Nim': '#ffc200',
+                'OCaml': '#3be133',
+                'Clojure': '#db5855',
+            };
+            return colors[lang] || '#8b949e';
+        }
+
+        // Initial load
+        loadTrending();
+    </script>
+</body>
+</html>
+
